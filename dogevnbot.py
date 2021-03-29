@@ -197,6 +197,7 @@ async def sua(ctx):
 @bot.event
 async def on_message(ctx):
     # mk id: 609737193854074891
+    # hi
     if ctx.author.id == 609737193854074891:
         if len(ctx.attachments) != 0:
             if not ctx.author.bot:
