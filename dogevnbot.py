@@ -5,6 +5,7 @@ import random
 import time
 import asyncio
 from discord.ext import commands
+import config
 
 
 def read_token():
@@ -207,4 +208,4 @@ async def on_message(ctx):
             await log_image_channel.send(f"""{get_time()} in channel {ctx.channel}: {ctx.content}""")
 
 
-bot.run(token)
+bot.run(config.token)
