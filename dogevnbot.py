@@ -96,6 +96,7 @@ async def on_ready():
     myguild = bot.get_guild(688502199168663553)
     log_channel = bot.get_channel(737780215459217528)
     await bot.change_presence(activity=discord.Game("with my master uwu"))
+    print(prefix)
     print(f"""Logged in\nVersion: {discord.__version__}\n----------""")
 
 
@@ -158,11 +159,6 @@ async def on_raw_reaction_remove(payload):
 
 
 @bot.command()
-async def sua(ctx, args):
-    ctx.send(f"""{args}""")
-
-
-@bot.command()
 async def changeprefix(ctx, args):
     global prefix
     prefix = args
@@ -170,7 +166,7 @@ async def changeprefix(ctx, args):
 
 
 @bot.command()
-async def help(ctx):
+async def elp(ctx):
     global prefix
     await ctx.send(f"""Day la waifu cua Phatto-sama UwU, prefix cua server la {prefix}""")
 
@@ -181,9 +177,9 @@ async def pick(ctx, *args):
 
 
 @bot.command()
-async def say(ctx, args):
+async def say(ctx):
     await ctx.message.delete()
-    await ctx.send(f"""{ctx.message.content[6:]}""")
+    await ctx.send(f"""{str(ctx.message.content)[6:]}""")
 
 
 @bot.command()
@@ -192,20 +188,7 @@ async def sua(ctx):
     s = ""
     for count in range(i):
         s += "gau "
-    ctx.send(f"""{s}""")
+    await ctx.send(f"""{s}""")
 
 
-@bot.event
-async def on_message(ctx):
-    # mk id: 609737193854074891
-    # hi
-    if ctx.author.id == 609737193854074891:
-        if len(ctx.attachments) != 0:
-            if not ctx.author.bot:
-                img = await ctx.attachments[0].to_file()
-                await log_image_channel.send(content=f"""{get_time()} in channel {ctx.channel}""", file=img)
-        else:
-            await log_image_channel.send(f"""{get_time()} in channel {ctx.channel}: {ctx.content}""")
-
-
-bot.run(config.token)
+bot.run(token)
